@@ -13,7 +13,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 //配置server虚拟路径，handler为前台访问的目录，locations为files相对应的本地路径
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
 
-        registry.addResourceHandler("/images/**").addResourceLocations("file:G:\\images\\");
+        registry.addResourceHandler("/images/**").addResourceLocations("file:C:\\images\\");
         super.addResourceHandlers(registry);
     }
 }

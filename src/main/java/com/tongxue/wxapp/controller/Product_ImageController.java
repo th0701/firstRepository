@@ -33,7 +33,7 @@ public class Product_ImageController {
         //如果文件内容不为空，则写入上传路径
         if (!file.isEmpty()) {
             //上传文件路径
-            String path = "G:/images";
+            String path = "C:/images";
 
 
             //上传文件名
@@ -53,7 +53,7 @@ public class Product_ImageController {
             //返回的是一个url对象
             String url=file1.toString();
 
-            url="http://localhost"+url.substring(2).replaceAll("\\\\","/");
+            url="http://kilala.co"+url.substring(2).replaceAll("\\\\","/");
             res.put("url", url);
             return res;
 
