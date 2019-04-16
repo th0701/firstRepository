@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>商城后台</title>
+    <link th:href="@{/layui/css/layui.mobile.css}" rel="stylesheet" />
+</head>
+<body class="layui-layout-body" >
+<div th:fragment="top" class="panel panel-default">
+
+        <div class="layui-header">
+            <div class="layui-logo">商城后台管理</div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item"><a href="">控制台</a></li>
+                <li class="layui-nav-item"><a href="">商品管理</a></li>
+                <li class="layui-nav-item"><a href="">用户</a></li>
+                <li class="layui-nav-item"><a href="javascript:;">其它系统</a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a href="">邮件管理</a>
+                        </dd>
+                        <dd>
+                            <a href="">消息管理</a>
+                        </dd>
+                        <dd>
+                            <a href="">授权管理</a>
+                        </dd>
+                    </dl></li>
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item"><a href="javascript:;"> </a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a href="">基本资料</a>
+                        </dd>
+                        <dd>
+                            <a href="">安全设置</a>
+                        </dd>
+                    </dl></li>
+                <li class="layui-nav-item"><a href="">退了</a></li>
+            </ul>
+        </div>
+
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item layui-nav-itemed"><a class=""
+                                                                   href="javascript:;">首页模块</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="/banner/index" >Banner图</a>
+                            </dd>
+                            <dd>
+                                <a href="/typeOne/index" >首页类型维护一</a>
+                            </dd>
+                            <dd>
+                                <a href="/typeTwo/index" >首页类型维护二</a>
+                            </dd>
+                            <dd>
+                                <a href="/openType/index" >自然系列、爆款推荐..模块</a>
+                            </dd>
+                        </dl></li>
+                    <li class="layui-nav-item layui-nav-itemed"><a href="javascript:;" class="">分类、购物车模块</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="/shoppingCar/index">购物车管理</a>
+                            </dd>
+                            <dd>
+                                <a href="/product/index">商品管理</a>
+                            </dd>
+                            <dd>
+                                <a href="/product_type/index" >商品分类</a>
+                            </dd>
+                            <!--<dd>
+                                <a href="/productBrand/index" >商品品牌</a>
+                            </dd>-->
+                            <dd>
+                                <a href="/diopter/index" >美瞳度数</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed"><a href="javascript:;" class="">微信用户</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="/wechat/index">微信用户管理</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="">云市场</a></li>
+                    <li class="layui-nav-item"><a href="">发布商品</a></li>
+                </ul>
+            </div>
+        </div>
+</div>
+</div>
+</body>
+</html>
