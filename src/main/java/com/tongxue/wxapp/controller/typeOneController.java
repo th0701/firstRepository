@@ -38,6 +38,19 @@ public class typeOneController {
         return obj.toJSONString();
     }
 
+    //假
+    @ResponseBody
+    @RequestMapping("/selectList1")
+    public String selectList1(String page, String limit){
+        PageInfo<TypeOne> pageInfo=typeOneService.selectList1(Integer.parseInt(page),Integer.parseInt(limit));
+        JSONObject obj=new JSONObject();
+        obj.put("code", 0);
+        obj.put("msg", "");
+        obj.put("count",pageInfo.getTotal());
+        obj.put("data", pageInfo.getList());
+        return obj.toJSONString();
+    }
+
     @RequestMapping("/add")
     public String add(Model mo, String pt_parentId, String str){
         if(pt_parentId==null){

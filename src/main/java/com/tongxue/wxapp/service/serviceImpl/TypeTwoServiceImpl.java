@@ -22,6 +22,14 @@ public class TypeTwoServiceImpl implements TypeTowService {
         return new PageInfo<>(typeTwoMapper.selectList());
     }
 
+    //假
+    @Override
+    @Transactional
+    public PageInfo<TypeTwo> selectList1(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        return new PageInfo<>(typeTwoMapper.selectList1());
+    }
+
     @Override
     @Transactional
     public int addType(TypeTwo typeOne) {

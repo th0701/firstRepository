@@ -13,6 +13,9 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <div style="padding: 15px;">
+            <div>
+                <h1 align="center">首页商品推荐</h1>
+            </div>
             <a onclick="add();" class="layui-btn layui-inline fl w130">添加</a>
             <table id="openType" lay-filter="test"></table>
             <table id="openTypeCh" lay-filter="test1" style="display: none;position: relative;left: 100px;top: 100px"></table>
@@ -89,6 +92,7 @@
 
                 if(layEvent === 'add'){ //添加
                     layer.open({
+                        title:'类别绑定展示商品',
                         type: 2,
                         skin: 'layui-layer-rim', //加上边框
                         area: ['500px', '520px'], //宽高
@@ -127,7 +131,7 @@
                 } else if(layEvent === 'edit'){ //编辑
                     layer.open({
                         type: 2,
-                        title: '编辑信息',
+                        title: '编辑',
                         shadeClose: true,
                         shade: 0.8,
                         btn:"确定",
@@ -185,6 +189,7 @@
         function add() {
 //页面层
             layer.open({
+                title:'添加展示类别',
                 type: 2,
                 skin: 'layui-layer-rim', //加上边框
                 area: ['500px', '520px'], //宽高

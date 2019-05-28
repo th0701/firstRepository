@@ -12,4 +12,8 @@ public interface WxUserService {
     int updateImageName(WxUser wxUser);
 
     List<WxUser> selectList();
+
+    int updateVersion(String openId);
+
+    WxUser selectWxUser(String openId);
 }

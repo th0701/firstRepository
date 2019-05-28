@@ -25,4 +25,7 @@ public interface BannerService {
 
     Integer selectTypeId(Integer id);
 
+    //假数据
+    PageInfo<Banner> selectList1 (Integer pageNum, Integer pageSize);
+
 }

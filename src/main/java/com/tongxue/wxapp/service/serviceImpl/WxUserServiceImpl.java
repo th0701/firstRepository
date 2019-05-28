@@ -32,4 +32,14 @@ public class WxUserServiceImpl implements WxUserService {
     public int addWxUser(WxUser wxUser) {
         return wxUserMapper.addWxUser(wxUser);
     }
+
+    @Override
+    public WxUser selectWxUser(String openId) {
+        return wxUserMapper.selectWxUser(openId);
+    }
+
+    @Override
+    public int updateVersion(String openId) {
+        return wxUserMapper.updateVersion(openId);
+    }
 }

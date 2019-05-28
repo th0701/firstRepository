@@ -18,4 +18,7 @@ public interface Ot_productMapper {
 
     @Delete("delete from ot_product where ot_productId=#{id}")
     int deleteOt_product(Integer id);
+
+    @Delete("delete from ot_product where product_id=#{id}")
+    int deletePdOt(Integer id);
 }

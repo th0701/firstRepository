@@ -10,6 +10,30 @@ public class WxUser {
     private String country;
     private String avatarurl;
     private String unionid;
+    private Integer version;
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+    @Override
+    public String toString() {
+        return "WxUser{" +
+                "wxUserId=" + wxUserId +
+                ", openid='" + openid + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", gender=" + gender +
+                ", city='" + city + '\'' +
+                ", province='" + province + '\'' +
+                ", country='" + country + '\'' +
+                ", avatarurl='" + avatarurl + '\'' +
+                ", unionid='" + unionid + '\'' +
+                '}';
+    }
 
     public Integer getWxUserId() {
         return wxUserId;
@@ -19,12 +43,12 @@ public class WxUser {
         this.wxUserId = wxUserId;
     }
 
-    public String getOpeniId() {
+    public String getOpenid() {
         return openid;
     }
 
-    public void setOpeniId(String openiId) {
-        this.openid = openiId;
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 
     public String getNickname() {
@@ -83,9 +107,9 @@ public class WxUser {
         this.unionid = unionid;
     }
 
-    public WxUser(Integer wxUserId, String openiId, String nickname, Integer gender, String city, String province, String country, String avatarurl, String unionid) {
+    public WxUser(Integer wxUserId, String openid, String nickname, Integer gender, String city, String province, String country, String avatarurl, String unionid) {
         this.wxUserId = wxUserId;
-        this.openid = openiId;
+        this.openid = openid;
         this.nickname = nickname;
         this.gender = gender;
         this.city = city;

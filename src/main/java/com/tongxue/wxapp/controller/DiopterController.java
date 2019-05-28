@@ -14,9 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -96,4 +99,18 @@ public class DiopterController {
         map.put("diopterStock",stock);
         return map;
     }
+
+    //导入
+    @RequestMapping(value = "/import")
+    public String exImport(@RequestParam(value = "filename") MultipartFile file) {
+        boolean a = false;
+        String fileName = file.getOriginalFilename();
+        try {
+            a = diopterService.batchImport(fileName, file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:index";
+    }
+
 }

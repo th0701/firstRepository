@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>商城后台</title>
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet"/>
+</head>
+<body class="layui-layout-body">
+
+<form class="layui-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">品牌</label>
+        <div class="layui-input-block">
+            <input type="text" name="product_brand" id="product_brand" th:value="${pa?.product_brand}" required lay-verify="required"
+                   autocomplete="off" class="layui-input" >
+        </div>
+    </div>
+    <input name="param_id"  autocomplete="off" type="hidden" id="param_id">
+    <input name="product_id"  autocomplete="off" type="hidden" id="product_id">
+    <div class="layui-form-item">
+        <label class="layui-form-label">厚度</label>
+        <div class="layui-input-block">
+            <input type="text" name="product_sinck" id="product_sinck" th:value="${pa?.product_sinck}" required lay-verify="required" placeholder="请输入厚度"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">直径</label>
+        <div class="layui-input-block">
+            <input type="text" name="product_diameter" id="product_diameter" th:value="${pa?.product_diameter}" required lay-verify="required" placeholder="请输入直径"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">周期</label>
+        <div class="layui-input-block">
+            <input type="text" name="product_cycle" id="product_cycle" th:value="${pa?.product_cycle}" required lay-verify="required" placeholder="请输入周期"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">规格</label>
+        <div class="layui-input-block">
+            <input type="text" name="product_stand" id="product_stand" th:value="${pa?.product_stand}" required lay-verify="required" placeholder="请输入规格"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">含水</label>
+        <div class="layui-input-block">
+            <input type="text" name="product_water" id="product_water" th:value="${pa?.product_water}" required lay-verify="required"
+                   autocomplete="off" class="layui-input" placeholder="23">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">产地</label>
+        <div class="layui-input-block">
+            <input type="text" name="product_area" id="product_area" th:value="${pa?.product_area}" required lay-verify="required"
+                   autocomplete="off" class="layui-input" placeholder="吉林">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">颜色类别</label>
+        <div class="layui-input-block">
+            <input type="text" name="product_colorType" id="product_colorType" th:value="${pa?.product_colorType}" required lay-verify="required"
+                   autocomplete="off" class="layui-input" placeholder="红 金">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">批准文号</label>
+        <div class="layui-input-block">
+            <input type="text" name="product_documentNumber" id="product_documentNumber" th:value="${pa?.product_documentNumber}" required lay-verify="required"
+                   autocomplete="off" class="layui-input" placeholder="123456789">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">生产企业</label>
+        <div class="layui-input-block">
+            <input type="text" name="product_company" id="product_company" th:value="${pa?.product_company}" required lay-verify="required"
+                   autocomplete="off" class="layui-input" placeholder="可啦啦有限公司">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script th:src="@{/layui/layui.js}"></script>
+<script>
+    layui.use(['layer', 'form'], function() {
+        var form = layui.form;
+        var layer = layui.layer;
+        form.on('submit(formDemo)', function (data) {
+            var param = data.field;
+            $.ajax({
+                url: "/param/updateParam",
+                data: data.field,
+                success: function (data) {
+                    if (data== 0) {
+                        layer.alert('添加成功', {icon: 1});
+                    } else if (data== 1){
+                        layer.alert('添加失败', {icon: 5});
+                    }else if (data== 2){
+                        layer.alert('编辑成功', {icon: 1});
+                    }else{
+                        layer.alert('编辑失败', {icon: 5});
+                    }
+                    form.render();
+                },
+                error: function (result) {
+                    alert('error');
+                }
+            });
+            return false;
+        });
+    })
+</script>
+<script th:src="@{/layui/lay/modules/jquery-1.8.3.min.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+</script>
+
+
+</body>
+</html>

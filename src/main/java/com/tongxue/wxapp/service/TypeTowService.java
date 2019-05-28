@@ -11,4 +11,7 @@ public interface TypeTowService {
     int updateType(TypeTwo typeOne);
 
     int deleteType(Integer id);
+
+    //假
+    PageInfo<TypeTwo> selectList1(Integer pageNum, Integer pageSize);
 }

@@ -39,6 +39,12 @@ public class Product_TypeServiceImpl  implements Product_TypeService {
 
     @Override
     @Transactional
+    public List<Product_Type> selectParent1() {
+        return product_typeMapper.selectParent1();
+    }
+
+    @Override
+    @Transactional
     public List<Product_Type> selectChildren(Integer id) {
         return product_typeMapper.selectChildren(id);
     }

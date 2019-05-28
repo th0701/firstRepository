@@ -84,4 +84,11 @@ public class OpenTypeController {
     public List<OpenType> selectTree(){
         return OpenType.selectTree(openTypeService.selectList());
     }
+
+    //假
+    @ResponseBody
+    @RequestMapping("selectTree1")
+    public List<OpenType> selectTree1(){
+        return OpenType.selectTree(openTypeService.selectList1());
+    }
 }

@@ -7,8 +7,15 @@ import java.util.Date;
 
 public class ShoppingCar {
     private Integer shopId;
-    private Integer wxUId;
-    private Integer productId;
+    private String openId;
+    private String nickName;
+    private Integer product_id;
+    private String pdImage;
+    private String productName;
+    private Double productPrice;
+    private Integer pd_colorId;
+    private String colorName;
+    private String diopterName;
     private Integer num;
     private Double sumPrice;
     private Integer statu;
@@ -26,20 +33,76 @@ public class ShoppingCar {
         this.shopId = shopId;
     }
 
-    public Integer getWxUId() {
-        return wxUId;
+    public String getOpenId() {
+        return openId;
     }
 
-    public void setWxUId(Integer wxUId) {
-        this.wxUId = wxUId;
+    public void setOpenId(String openId) {
+        this.openId = openId;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public Integer getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(Integer product_id) {
+        this.product_id = product_id;
+    }
+
+    public String getPdImage() {
+        return pdImage;
+    }
+
+    public void setPdImage(String pdImage) {
+        this.pdImage = pdImage;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public Double getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(Double productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public Integer getPd_colorId() {
+        return pd_colorId;
+    }
+
+    public void setPd_colorId(Integer pd_colorId) {
+        this.pd_colorId = pd_colorId;
+    }
+
+    public String getColorName() {
+        return colorName;
+    }
+
+    public void setColorName(String colorName) {
+        this.colorName = colorName;
+    }
+
+    public String getDiopterName() {
+        return diopterName;
+    }
+
+    public void setDiopterName(String diopterName) {
+        this.diopterName = diopterName;
     }
 
     public Integer getNum() {
@@ -82,17 +145,53 @@ public class ShoppingCar {
         this.updateTime = updateTime;
     }
 
-    public ShoppingCar() {
+    public ShoppingCar(String openId, Integer product_id, Integer pd_colorId, String diopterName, Integer num) {
+        this.openId = openId;
+        this.product_id = product_id;
+        this.pd_colorId = pd_colorId;
+        this.diopterName = diopterName;
+        this.num = num;
     }
 
-    public ShoppingCar(Integer shopId, Integer wxUId, Integer productId, Integer num, Double sumPrice, Integer statu, Date createTime, Date updateTime) {
+    public ShoppingCar(Integer shopId, String openId, String nickName, Integer product_id, String pdImage, String productName, Double productPrice, Integer pd_colorId, String colorName, String diopterName, Integer num, Double sumPrice, Integer statu, Date createTime, Date updateTime) {
         this.shopId = shopId;
-        this.wxUId = wxUId;
-        this.productId = productId;
+        this.openId = openId;
+        this.nickName = nickName;
+        this.product_id = product_id;
+        this.pdImage = pdImage;
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.pd_colorId = pd_colorId;
+        this.colorName = colorName;
+        this.diopterName = diopterName;
         this.num = num;
         this.sumPrice = sumPrice;
         this.statu = statu;
         this.createTime = createTime;
         this.updateTime = updateTime;
+    }
+
+    public ShoppingCar() {
+    }
+
+    @Override
+    public String toString() {
+        return "ShoppingCar{" +
+                "shopId=" + shopId +
+                ", openId='" + openId + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", product_id=" + product_id +
+                ", pdImage='" + pdImage + '\'' +
+                ", productName='" + productName + '\'' +
+                ", productPrice=" + productPrice +
+                ", pd_colorId=" + pd_colorId +
+                ", colorName='" + colorName + '\'' +
+                ", diopterName='" + diopterName + '\'' +
+                ", num=" + num +
+                ", sumPrice=" + sumPrice +
+                ", statu=" + statu +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
     }
 }

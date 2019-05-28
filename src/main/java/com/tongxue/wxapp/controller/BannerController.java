@@ -56,7 +56,7 @@ public class BannerController {
         mo.addAttribute("str",str);
         return "banner/addbanner";
     }
-
+    //真
     @ResponseBody
     @RequestMapping("/selectList")
     public String selectList(String page, String limit){
@@ -68,6 +68,20 @@ public class BannerController {
         obj.put("data", pageInfo.getList());
         return obj.toJSONString();
     }
+
+    //假
+    @ResponseBody
+    @RequestMapping("/selectList1")
+    public String selectList1(String page, String limit){
+        PageInfo<Banner> pageInfo=bannerService.selectList1(Integer.parseInt(page),Integer.parseInt(limit));
+        JSONObject obj=new JSONObject();
+        obj.put("code", 0);
+        obj.put("msg", "");
+        obj.put("count",pageInfo.getTotal());
+        obj.put("data", pageInfo.getList());
+        return obj.toJSONString();
+    }
+
     @ResponseBody
     @RequestMapping("/deleteBanner")
     public String deleteBanner(Integer id){

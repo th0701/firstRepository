@@ -83,4 +83,10 @@ public class Product_TypeController {
     public List<Product_Type> selectTree(){
         return Product_Type.getList(product_typeService.selectParent());
     }
+
+    @RequestMapping("/selectTree1")
+    @ResponseBody
+    public List<Product_Type> selectTree1(){
+        return Product_Type.getList(product_typeService.selectParent1());
+    }
 }

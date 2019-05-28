@@ -8,6 +8,7 @@ public class Diopter {
     private String diopterName;
     private String product_name;
     private String pd_colorName;
+    private String product_no;
 
     @Override
     public String toString() {
@@ -30,7 +31,15 @@ public class Diopter {
         this.diopterStock = diopterStock;
     }
 
-    public Diopter(Integer diopterId, Integer diopterStock, Integer product_id, Integer pd_colorId, String diopterName, String product_name, String pd_colorName) {
+    public String getProduct_no() {
+        return product_no;
+    }
+
+    public void setProduct_no(String product_no) {
+        this.product_no = product_no;
+    }
+
+    public Diopter(Integer diopterId, Integer diopterStock, Integer product_id, Integer pd_colorId, String diopterName, String product_name, String pd_colorName, String product_no) {
         this.diopterId = diopterId;
         this.diopterStock = diopterStock;
         this.product_id = product_id;
@@ -38,6 +47,7 @@ public class Diopter {
         this.diopterName = diopterName;
         this.product_name = product_name;
         this.pd_colorName = pd_colorName;
+        this.product_no = product_no;
     }
 
     public Integer getDiopterId() {

@@ -27,4 +27,9 @@ public class Ot_productServiceImpl implements Ot_productService {
     public int addot_product(Ot_product ot_product) {
         return ot_productMapper.addot_product(ot_product);
     }
+
+    @Override
+    public int deletePdOt(Integer id) {
+        return ot_productMapper.deletePdOt(id);
+    }
 }

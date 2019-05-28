@@ -10,4 +10,7 @@ public interface Ot_productService {
     List<Ot_product> selectList(Integer id);
 
     int deleteOt_product(Integer id);
+
+    //删除商品并且删除首页展示的商品
+    int deletePdOt(Integer id);
 }

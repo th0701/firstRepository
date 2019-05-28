@@ -17,4 +17,6 @@ public interface OpenTypeService {
     int deleteOpenType(Integer id);
 
     int updateOpenType(OpenType openType);
+
+    List<OpenType> selectList1();
 }

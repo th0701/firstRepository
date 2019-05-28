@@ -10,4 +10,9 @@ public interface Product_colorService {
     List<Product_color> selectList(Integer id);
 
     int deleteColor(Integer id);
+
+    int deletePdColor(Integer id);
+
+    //查找id
+    Integer selectId(Integer id,  String pd_colorName);
 }

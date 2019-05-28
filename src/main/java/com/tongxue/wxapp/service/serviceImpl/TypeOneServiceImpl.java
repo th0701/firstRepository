@@ -23,6 +23,13 @@ public class TypeOneServiceImpl implements TypeOneService {
 
     @Override
     @Transactional
+    public PageInfo<TypeOne> selectList1(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        return new PageInfo<>(typeOneMapper.selectList1());
+    }
+
+    @Override
+    @Transactional
     public int addType(TypeOne typeOne) {
         return typeOneMapper.addType(typeOne);
     }

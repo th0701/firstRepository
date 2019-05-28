@@ -34,7 +34,7 @@ public class UserController {
                 if(user!=null){
                     return "product/productList";
                 }else{
-                    return "user/login";
+                    return "login";
                 }
             }
 

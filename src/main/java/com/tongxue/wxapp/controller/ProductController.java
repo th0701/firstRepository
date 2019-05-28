@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/product")
@@ -31,7 +29,7 @@ public class ProductController {
 
     @RequestMapping("/selectList")
     @ResponseBody
-    public String selectList(String product_name,HttpSession session,String page,String limit){
+    public String selectList(String product_name,String page,String limit){
         if(page==null || limit==null){
             page="1";
             limit="100";
@@ -39,10 +37,37 @@ public class ProductController {
         PageInfo<Product> productPageInfo = productService.selectList(product_name, Integer.parseInt(page),Integer.parseInt(limit));
         JSONObject obj=new JSONObject();
         //前台通过key值获得对应的value值
-        obj.put("code", 0);
-        obj.put("msg", "");
-        obj.put("count",productPageInfo.getTotal());
-        obj.put("data", productPageInfo.getList());
+        if(productPageInfo.getTotal()>0){
+            obj.put("code", 0);
+            obj.put("msg", "请求成功");
+            obj.put("count",productPageInfo.getTotal());
+            obj.put("data", productPageInfo.getList());
+        }else{
+            obj.put("code", 1);
+            obj.put("msg", "暂无数据！");
+        }
+        return obj.toJSONString();
+    }
+
+    @RequestMapping("/selectList1")
+    @ResponseBody
+    public String selectList1(String product_name,String page,String limit){
+        if(page==null || limit==null){
+            page="1";
+            limit="100";
+        }
+        PageInfo<Product> productPageInfo = productService.selectList1(product_name, Integer.parseInt(page),Integer.parseInt(limit));
+        JSONObject obj=new JSONObject();
+        //前台通过key值获得对应的value值
+        if(productPageInfo.getTotal()>0){
+            obj.put("code", 0);
+            obj.put("msg", "请求成功");
+            obj.put("count",productPageInfo.getTotal());
+            obj.put("data", productPageInfo.getList());
+        }else{
+            obj.put("code", 1);
+            obj.put("msg", "暂无数据！");
+        }
         return obj.toJSONString();
     }
 
@@ -123,8 +148,8 @@ public class ProductController {
 
     @ResponseBody
     @RequestMapping("/selectDetail")
-    public Product selectDetail(Integer product_id){
-        return productService.selectProduct(product_id);
+    public Product selectDetail(Integer product_id,String openId){
+        return productService.selectProduct(product_id,openId);
     }
 
     @ResponseBody
@@ -148,4 +173,102 @@ public class ProductController {
         }
         return list;
     }
+
+    @ResponseBody
+    @RequestMapping("/selectWxTimeType")
+    public Map selectWxTimeType(Integer pt_id){
+        Map map=new HashMap();
+        List<Product> products = productService.selectWxTimeList(pt_id);
+        if(products!=null&& !products.isEmpty()){
+            map.put("code",0);
+            map.put("msg","请求成功！");
+            map.put("data",products);
+        }else{
+            map.put("code",1);
+            map.put("msg","暂无数据!");
+        }
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/selectWxPriceType")
+    public Map selectWxPriceType(Integer pt_id){
+        Map map=new HashMap();
+        List<Product> list = productService.selectWxPriceList(pt_id);
+        if(list!=null&& !list.isEmpty()){
+            map.put("code",0);
+            map.put("msg","请求成功！");
+            map.put("data",list);
+        }else{
+            map.put("code",1);
+            map.put("msg","暂无数据!");
+        }
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/selectWxType")
+    public Map selectWxType(Integer pt_id){
+        Map map=new HashMap();
+        List<Product> list1 = productService.selectType(pt_id);
+        if(list1!=null&& !list1.isEmpty()){
+            map.put("code",0);
+            map.put("msg","请求成功！");
+            map.put("data",list1);
+        }else{
+            map.put("code",1);
+            map.put("msg","暂无数据!");
+        }
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/selectAllProduct")
+    public Map selectAllProduct(){
+        Map map=new HashMap();
+        List<Product> products = productService.selectAllProduct();
+        if(products!=null&& !products.isEmpty()){
+            map.put("code",0);
+            map.put("msg","请求成功！");
+            map.put("data",products);
+        }else{
+            map.put("code",1);
+            map.put("msg","暂无数据!");
+        }
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/selectAllTimeProduct")
+    public Map selectAllTimeProduct(){
+        Map map=new HashMap();
+        List<Product> products = productService.selectAllTimeProduct();
+        if(products!=null&& !products.isEmpty()){
+            map.put("code",0);
+            map.put("msg","请求成功！");
+            map.put("data",products);
+        }else{
+            map.put("code",1);
+            map.put("msg","暂无数据!");
+        }
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/selectAllPriceProduct")
+    public Map selectAllPriceProduct(){
+        Map map=new HashMap();
+        List<Product> products = productService.selectAllPriceProduct();
+        if(products!=null&& !products.isEmpty()){
+            map.put("code",0);
+            map.put("msg","请求成功！");
+            map.put("data",products);
+        }else{
+            map.put("code",1);
+            map.put("msg","暂无数据!");
+        }
+        return map;
+    }
+
+
 }

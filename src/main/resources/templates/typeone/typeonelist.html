@@ -11,6 +11,9 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <div style="padding: 15px;">
+            <div>
+                <h1 align="center">首页分类推荐一管理</h1>
+            </div>
             <a onclick="add();" class="layui-btn layui-inline fl w130">添加</a>
             <table id="typeOne" lay-filter="test"></table>
         </div>
@@ -114,6 +117,7 @@
     function add() {
 //页面层
         layer.open({
+            title:'添加推荐分类',
             type: 2,
             skin: 'layui-layer-rim', //加上边框
             area: ['500px', '520px'], //宽高

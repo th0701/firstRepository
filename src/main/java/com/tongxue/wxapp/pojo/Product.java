@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class Product {
     private Integer product_id;
@@ -11,17 +12,44 @@ public class Product {
     private Integer product_type;
     private String product_addr;
     private String product_remark;
-    @JsonFormat(pattern="yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date product_uptime;
     private Double product_price;
     private String product_image;
     private String pt_name;
     private Integer shopCount=0;
     private Integer viewCount=0;
-    private List<Product_image> allImage;
+    private List<Map<String,String>> allImage;
     private List<Product_color> allColor;
     private List<Diopter> allDiopter;
+    private Integer isCollection;
+    private List<Map<String,String>> showImages;
+    private Product_param productParam;
 
+
+    public List<Map<String, String>> getShowImages() {
+        return showImages;
+    }
+
+    public void setShowImages(List<Map<String, String>> showImages) {
+        this.showImages = showImages;
+    }
+
+    public Product_param getProductParam() {
+        return productParam;
+    }
+
+    public void setProductParam(Product_param productParam) {
+        this.productParam = productParam;
+    }
+
+    public Integer getIsCollection() {
+        return isCollection;
+    }
+
+    public void setIsCollection(Integer isCollection) {
+        this.isCollection = isCollection;
+    }
 
     public Integer getShopCount() {
         return shopCount;
@@ -55,7 +83,7 @@ public class Product {
         this.allDiopter = allDiopter;
     }
 
-    public Product(Integer product_id, String product_name, List<Product_image> allImage, Integer product_type, Integer product_stock, String product_addr, Integer pb_id, String pb_name, String product_remark, Date product_uptime, Double product_price, String product_image, String pt_name) {
+    public Product(Integer product_id, String product_name, List<Map<String ,String>> allImage, Integer product_type, Integer product_stock, String product_addr, Integer pb_id, String pb_name, String product_remark, Date product_uptime, Double product_price, String product_image, String pt_name) {
         this.product_id = product_id;
         this.product_name = product_name;
         this.allImage = allImage;
@@ -114,11 +142,11 @@ public class Product {
         this.product_name = product_name;
     }
 
-    public List<Product_image> getAllImage() {
+    public List<Map<String, String>> getAllImage() {
         return allImage;
     }
 
-    public void setAllImage(List<Product_image> allImage) {
+    public void setAllImage(List<Map<String, String>> allImage) {
         this.allImage = allImage;
     }
 

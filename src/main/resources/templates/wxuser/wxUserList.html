@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>商城后台</title>
-    <link th:href="@{/layui/css/layui.css}" rel="stylesheet" />
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet"/>
 </head>
-<body class="layui-layout-body" >
+<body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div th:include="top::top"></div>
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <div style="padding: 15px;">
-            <table id="typeTwo" lay-filter="test"></table>
+            <div>
+                <h1 align="center">微信用户管理</h1>
+            </div>
+            <a onclick="updateOne();" class="layui-btn layui-inline fl w130">修改为正式版本</a>
+            <a onclick="updatezero();" class="layui-btn layui-inline fl w130">修改为审核版本</a>
+            <table id="wxUser" lay-filter="test"></table>
+            <table id="address" lay-filter="test1" ></table>
         </div>
     </div>
     <script type="text/html" id="barDemo">
         <div class="layui-btn-container">
-            <button class="layui-btn layui-btn-sm" lay-event="del">删除</button>
-            <button class="layui-btn layui-btn-sm" lay-event="edit">编辑</button>
+            <button class="layui-btn layui-btn-sm" lay-event="edit">修改版本</button>
         </div>
     </script>
     <input type="hidden" value="/banner/add" id="ad">
@@ -27,88 +32,87 @@
     </div>
 </div>
 <script th:src="@{/layui/layui.js}"></script>
-<script type="text/html" id="image1">
+<script type="text/html" id="image">
     <img src="{{ d.avatarurl }}">
 </script>
 <script>
     //JavaScript代码区域
-    layui.use(['table', 'layer', 'form'], function(){
-        var table = layui.table;
-        layer = layui.layer;
-        form = layui.form;
+    layui.use(['table', 'layer', 'form','jquery'], function () {
+        var table = layui.table;
+        layer = layui.layer;
+        form = layui.form;
+        $ = layui.jquery;
         table.render({
-            elem: '#typeTwo'
-            ,height: 312
-            ,url: '/wechat/selectList' //数据接口
-            ,page: true //开启分页
-            ,limit:10
-            ,cols: [
+            elem: '#wxUser'
+            , height: 312
+            , url: '/wechat/selectList' //数据接口
+            , page: true //开启分页
+            , limit: 10
+            , cols: [
                 [ //表头
-                    {field: 'wxUserId', title: 'ID', width:80, sort: true, fixed: 'left'}
-                    ,{field: 'nickname', title: '微信昵称', width:120}
-                    ,{field: 'city', title: '省份', width:120, sort: true}
-                    ,{field: 'province', title: '城市', width:120, sort: true}
-                    ,{field: 'avatarurl', title: '微信图片', width:120, sort: true,temple:"#image"}
-                    /*,{fixed: 'right',title: '操作', width:300, toolbar: '#barDemo'}*/
+                    {field: 'wxUserId', title: 'ID', width: 80, sort: true, fixed: 'left'}
+                    , {field: 'openid', title: '唯一标识', width: 120}
+                    , {field: 'nickname', title: '微信昵称', width: 120}
+                    , {
+                    field: 'gender', title: '性别', width: 120, sort: true, templet:
+
+                        function (d) {
+                            if (d.gender == '1') {
+                                return '男'
+                            } else {
+                                return '女'
+                            }
+                        }
+                }
+                    , {field: 'city', title: '省份', width: 120, sort: true}
+                    , {field: 'province', title: '城市', width: 120, sort: true}
+                    , {field: 'avatarurl', title: '微信图片', width: 120, sort: true, temple: "#image"}
+                    , {field: 'version', title: '版本', width: 120, sort: true}
+                    ,{fixed: 'right',title: '操作', width:300, toolbar: '#barDemo'}
                 ]
             ]
         });
 
-        //监听工具条
-        table.on('tool(test)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+        table.on('rowDouble(test)', function(obj){
             var data = obj.data; //获得当前行数据
-            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
-            var tr = obj.tr; //获得当前行 tr 的DOM对象
-
-            if(layEvent === 'add'){ //添加
-                //do somehing
-            } else if(layEvent === 'del'){ //删除
-                layer.confirm('真的删除行么', function(index){
-                    //console.log(data.p_id);
-                    //向服务端发送删除指令
-                    $.ajax({
-                        url:'/typeTwo/deleteTypeTwo',
-                        type:'post',
-                        data:{'id':data.ttId},//向服务端发送删除的id
-                        success:function(suc){
-                            if(suc==0){
-                                obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
-                                layer.close(index);
-                                layer.msg("删除成功",{icon:1});
-                            }
-                            else{
-                                layer.msg("删除失败",{icon:5});
-                            }
-                        }
-                    });
-                });
-
-            } else if(layEvent === 'edit'){ //编辑
-                layer.open({
-                    type: 2,
-                    title: '编辑信息',
-                    shadeClose: true,
-                    shade: 0.8,
-                    btn:"确定",
-                    maxmin: true,
-                    area: ['70%', '70%'],
-                    content: '/typeTwo/add?str=1',//设置你要弹出的jsp页面
-                    success : function(layero, index){
-                        var body = layer.getChildFrame('body', index);//建立父子联系
-                        body.find("#ttId").val(data.ttId);
-                        body.find("#ttName").val(data.ttName);
-                        body.find("#ptId").val(data.ptId);
-                        body.find("#ttRemark").val(data.ttRemark);
-                    },
-                    end:function () {
-                        layer.closeAll();
-                        window.parent.location.reload();
-                    }
-                });
-            }
-        });
+            table.render({
+                elem: '#address'
+                ,height: 312
+                ,url: '/address/selectList?openId='+data.openid //数据接口
+                ,cols: [
+                    [ //表头
+                        {field: 'addr_id', title: 'ID', width:80, sort: true, fixed: 'left'}
+                        ,{field: 'tackName', title: '收货人姓名', width:120}
+                        ,{field: 'tackNumber', title: '收货人电话', width:120, sort: true}
+                        ,{field: 'tackCity', title: '城市', width:120, sort: true}
+                        ,{field: 'tackProvince', title: '详细地址', width:120, sort: true}
+                    ]
+                ]
+            });
+        })
     });
 </script>
-<script th:src="@{/layui/lay/modules/jquery-1.8.3.min.js}" ></script>
+<script th:src="@{/layui/lay/modules/jquery-1.8.3.min.js}"></script>
+<script>
+    function updateOne() {
+        $.ajax({
+            url:'/wechatVersion/updateOne',
+            type:'post',
+            success:function(suc){
+                alert(suc);
+            }
+        });
+    };
+    function updatezero() {
+        $.ajax({
+            url:'/wechatVersion/updateZero',
+            type:'post',
+            success:function(suc){
+                alert(suc);
+            }
+        });
+    }
+
+</script>
 </body>
 </html>

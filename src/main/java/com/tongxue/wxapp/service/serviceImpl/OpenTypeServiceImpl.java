@@ -54,4 +54,10 @@ public class OpenTypeServiceImpl implements OpenTypeService {
     public List<OpenType> selectList() {
         return openTypeMapper.selectList();
     }
+
+    @Override
+    @Transactional
+    public List<OpenType> selectList1() {
+        return openTypeMapper.selectList1();
+    }
 }

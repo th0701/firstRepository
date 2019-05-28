@@ -12,5 +12,8 @@ public interface TypeOneService {
 
     int deleteType(Integer id);
 
+    //假
+    PageInfo<TypeOne> selectList1(Integer pageNum,Integer pageSize);
+
 
 }

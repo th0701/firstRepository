@@ -25,6 +25,13 @@ public class BannerServiceImpl implements BannerService {
 
     @Override
     @Transactional
+    public PageInfo<Banner> selectList1(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return new PageInfo<Banner>(bannerMapper.selectList1());
+    }
+
+    @Override
+    @Transactional
     public int addBanner(Banner banner) {
         return bannerMapper.addBanner(banner);
     }

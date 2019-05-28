@@ -24,6 +24,8 @@ public interface Product_TypeService {
 
     List<Product_Type> selectParent();
 
+    List<Product_Type> selectParent1();
+
     List<Product_Type> selectChildren(Integer id);
 
     int selectParentId(Integer id);

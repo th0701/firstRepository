@@ -19,6 +19,16 @@ public class Product_colorServiceImpl implements Product_colorService {
     }
 
     @Override
+    public Integer selectId(Integer id, String pd_colorName) {
+        return product_colorMapper.selectId(id,pd_colorName);
+    }
+
+    @Override
+    public int deletePdColor(Integer id) {
+        return product_colorMapper.deletePdColor(id);
+    }
+
+    @Override
     public List<Product_color> selectList(Integer id) {
         return product_colorMapper.selectList(id);
     }
